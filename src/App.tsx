@@ -3,12 +3,18 @@ import Menu from "./ui/Menu/Menu";
 import MenuItem from "./ui/Menu/MenuItem";
 import SubMenu from "./ui/Menu/SubMenu";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { Input } from "./ui/Input/Input";
+library.add(fas);
+
 export default function App() {
   return (
     <>
       <div className="container p-12">
         <div className="mx-auto max-w-6xl">
           <h1 className="text-center text-3xl font-bold">Button type</h1>
+          <Input type="text" placeholder="Enter your name" />
           <div className="mt-10 flex items-center justify-center gap-12">
             <Button btnType={"primary"}>Primary</Button>
             <Button>Default</Button>

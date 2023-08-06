@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { MenuContext } from "./Menu";
 import { MenuItemProps } from "./MenuItem";
+import Icon from "../Icon/Icon";
 
 export interface SubMenuProps {
   className?: string;
@@ -10,7 +11,7 @@ export interface SubMenuProps {
   children?: React.ReactNode;
 }
 
-const SubMenu: React.FC<SubMenuProps> = (props) => {
+export const SubMenu: React.FC<SubMenuProps> = (props) => {
   const context = useContext(MenuContext);
   const { className, index, title, children } = props;
   const [menuOpen, setMenuOpen] = useState(
@@ -40,9 +41,9 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
     return (
       <ul
         className={twMerge(
-          " flex  origin-top transform flex-col items-center justify-center rounded-sm border bg-white transition duration-150 ease-in-out",
+          " flex  origin-top transform flex-col items-center justify-center rounded-sm border bg-white transition duration-300 ease-in-out",
           context.mode !== "vertical"
-            ? "absolute scale-0 group-hover:scale-100"
+            ? "absolute scale-0 group-hover:scale-100 mt-2"
             : "",
           context.mode === "vertical" && !menuOpen ? "hidden " : "",
           context.mode === "vertical" && menuOpen ? "group:block" : "",
@@ -73,9 +74,25 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
       )}
       key={index}
     >
-      <div className="group ">
-        <div className=" px-6 py-3" onClick={handleClick}>
+      <div className="group">
+        <div
+          className={twMerge(
+            "flex items-center gap-2",
+            context.mode === "vertical" ? "px-6 py-3" : "",
+          )}
+          onClick={handleClick}
+          
+        >
           {title}
+          <Icon
+            icon="arrow-down"
+            size="sm"
+            className={twMerge(
+              "transform transition-all duration-200 ease-in-out",
+              context.mode === "vertical" && menuOpen ? "rotate-180" : "",
+              context.mode !== "vertical" ? "group-hover:rotate-180" : "",
+            )}
+          ></Icon>
         </div>
         {renderChildren()}
       </div>

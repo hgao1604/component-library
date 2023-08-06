@@ -5,8 +5,11 @@ export type ButtonType = "primary" | "default" | "danger" | "link";
 
 interface BaseButtonProps {
   className?: string;
+  /** Disable the button */
   disabled?: boolean;
+  /** Set the size of the button */
   size?: ButtonSize;
+  /** Set the type of the button */
   btnType?: ButtonType;
   children: React.ReactNode;
   href?: string;
@@ -18,7 +21,16 @@ type AnchorButtonProps = BaseButtonProps &
   React.AnchorHTMLAttributes<HTMLElement>;
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
-const Button: React.FC<ButtonProps> = (props) => {
+/**
+ * The most common component of any UI library is the button. This
+ * is a simple button component suporting HTML button and anchor
+ * elements.
+ * ### Usage
+ * ```js
+ * import {Button} from "highcold-ui";
+ * ```
+ */
+export const Button: React.FC<ButtonProps> = (props) => {
   const { className, disabled, size, btnType, children, href, ...restProps } =
     props;
   if (btnType === "link" && href) {
@@ -28,7 +40,7 @@ const Button: React.FC<ButtonProps> = (props) => {
           className,
           "underline-slate-700 relative inline-block font-mono uppercase text-slate-700 underline underline-offset-8 disabled:cursor-not-allowed disabled:opacity-70",
           size === "sm" ? "px-4 py-2 text-xs" : "",
-          size === "lg" ? "px-12 py-4 text-xl" : "",
+          size === "lg" ? "px-12 py-4 text-xl" : ""
         )}
         href={href}
         aria-disabled={disabled}
@@ -51,7 +63,7 @@ const Button: React.FC<ButtonProps> = (props) => {
             ? "bg-danger text-slate-100 hover:bg-red-500 active:bg-danger"
             : "",
           size === "sm" ? "rounded-md px-4 py-2 text-xs" : "",
-          size === "lg" ? "rounded-xl px-12 py-4 text-xl" : "",
+          size === "lg" ? "rounded-xl px-12 py-4 text-xl" : ""
         )}
         disabled={disabled}
         {...restProps}

@@ -25,7 +25,7 @@ export const MenuContext = createContext<IMenuContext>({
   mode: "horizontal",
 });
 
-const Menu: React.FC<MenuProps> = (props) => {
+export const Menu: React.FC<MenuProps> = (props) => {
   const {
     className,
     mode,

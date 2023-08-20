@@ -49,14 +49,14 @@ export const Icon: Story = {
 
 export const Prepand: Story = {
   args: {
-    placeholder: "Enter your name",
+    placeholder: "Enter your website",
     prepand: "https://",
   },
 };
 
 export const Append: Story = {
   args: {
-    placeholder: "Enter your name",
+    placeholder: "Enter your website",
     append: ".com",
   },
 };

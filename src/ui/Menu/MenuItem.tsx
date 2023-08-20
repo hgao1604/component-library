@@ -22,7 +22,7 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
     <li
       className={twMerge(
         className,
-        "hover:underline-primary active:underline-primary block cursor-pointer px-6 py-3 font-mono font-semibold  text-dark transition-all hover:text-primary focus:outline-none",
+        "hover:underline-primary active:underline-primary block cursor-pointer px-6 py-3 text-center  font-mono font-semibold text-dark transition-all hover:text-primary focus:outline-none",
         context.mode !== "vertical"
           ? "hover:underline hover:underline-offset-8"
           : "",
@@ -30,12 +30,12 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
           ? "underline-primary text-primary underline underline-offset-8"
           : "",
         context.mode === "vertical"
-          ? "underline-none hover:underline-none rounded-lg bg-transparent hover:bg-slate-100"
+          ? "underline-none hover:underline-none w-full rounded-sm bg-transparent hover:bg-slate-100"
           : "",
         context.mode === "vertical" && context.index === index
           ? "bg-slate-100 text-primary"
           : "",
-        disabled ? "pointer-events-none cursor-not-allowed opacity-70" : "",
+        disabled ? "pointer-events-none cursor-not-allowed opacity-70" : ""
       )}
       style={style}
       aria-disabled={disabled}

@@ -1,40 +1,99 @@
-import {Meta, StoryFn, ComponentMeta} from '@storybook/react';
+import { Meta, StoryObj } from "@storybook/react";
 
 import Menu from "./Menu";
 import MenuItem from "./MenuItem";
 import SubMenu from "./SubMenu";
 
-const menuMeta: Meta<typeof Menu> = {
-  title: "Menu",
-  id: "Menu",
-  tags: ['autodocs'],
+const meta = {
+  title: "UI/Menu",
   component: Menu,
-}
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+} satisfies Meta<typeof Menu>;
 
-export default menuMeta;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const DefaultMenu: StoryFn<typeof Menu> = (args) => (
-  <Menu {...args}>
-    <SubMenu title="DropDown">
-      <MenuItem>Menu1</MenuItem>
-      <MenuItem>Menu1</MenuItem>
-    </SubMenu>
-    <MenuItem>Menu2</MenuItem>
-    <MenuItem>Menu3</MenuItem>
-    <MenuItem disabled={true}>Menu4</MenuItem>
-  </Menu>
-)
+export const Horizontal: Story = {
+  args: {
+    mode: "horizontal",
+  },
+  render: (args) => (
+    <Menu {...args}>
+      <SubMenu title="DropDown">
+        <MenuItem>Menu1.1</MenuItem>
+        <MenuItem>Menu1.2</MenuItem>
+      </SubMenu>
+      <MenuItem>Menu2</MenuItem>
+      <MenuItem>Menu3</MenuItem>
+      <MenuItem disabled={true}>Disabled</MenuItem>
+    </Menu>
+  ),
+};
 
-DefaultMenu.storyName = "Default Menu"
+export const Vertical: Story = {
+  args: {
+    mode: "vertical",
+  },
+  render: (args) => (
+    <Menu {...args}>
+      <SubMenu title="DropDown">
+        <MenuItem>Menu1.1</MenuItem>
+        <MenuItem>Menu1.2</MenuItem>
+      </SubMenu>
+      <MenuItem>Menu2</MenuItem>
+      <MenuItem>Menu3</MenuItem>
+      <MenuItem disabled={true}>Disabled</MenuItem>
+    </Menu>
+  ),
+};
 
-export const VerticalMenu: StoryFn<typeof Menu> = (args) => (
-  <Menu {...args} mode="vertical">
-    <SubMenu title="DropDown">
+export const DefaultIndx: Story = {
+  args: {
+    defaultIndx: "1",
+  },
+  render: (args) => (
+    <Menu {...args}>
       <MenuItem>Menu1</MenuItem>
+      <MenuItem>Menu2</MenuItem>
+      <MenuItem>Menu3</MenuItem>
+      <MenuItem disabled={true}>Disabled</MenuItem>
+    </Menu>
+  ),
+};
+
+export const DefaultOpenSubMenu: Story = {
+  args: {
+    defaultOpenSubMenus: ["0"],
+    mode: "vertical",
+  },
+  render: (args) => (
+    <Menu {...args}>
+      <SubMenu title="DropDown">
+        <MenuItem>Menu1.1</MenuItem>
+        <MenuItem>Menu1.2</MenuItem>
+      </SubMenu>
+      <MenuItem>Menu2</MenuItem>
+      <MenuItem>Menu3</MenuItem>
+      <MenuItem disabled={true}>Disabled</MenuItem>
+    </Menu>
+  ),
+};
+
+export const OnSelect: Story = {
+  args: {
+    onSelect: (index) => {
+      alert("The index is " + index);
+    },
+  },
+  render: (args) => (
+    <Menu {...args}>
       <MenuItem>Menu1</MenuItem>
-    </SubMenu>
-    <MenuItem>Menu2</MenuItem>
-    <MenuItem>Menu3</MenuItem>
-    <MenuItem disabled={true}>Menu4</MenuItem>
-  </Menu>
-)
+      <MenuItem>Menu2</MenuItem>
+      <MenuItem>Menu3</MenuItem>
+      <MenuItem disabled={true}>Disabled</MenuItem>
+    </Menu>
+  ),
+};

@@ -15,7 +15,7 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
   const context = useContext(MenuContext);
   const { className, index, title, children } = props;
   const [menuOpen, setMenuOpen] = useState(
-    index === undefined ? false : context.defaultOpenSubMenus?.includes(index),
+    index === undefined ? false : context.defaultOpenSubMenus?.includes(index)
   );
 
   const handleClick = (e: React.MouseEvent) => {
@@ -34,7 +34,7 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
         //return childElement;
       } else {
         console.error(
-          "Warning: Menu has a child which is not a MenuItem component",
+          "Warning: Menu has a child which is not a MenuItem component"
         );
       }
     });
@@ -43,10 +43,10 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
         className={twMerge(
           " flex  origin-top transform flex-col items-center justify-center rounded-sm border bg-white transition duration-300 ease-in-out",
           context.mode !== "vertical"
-            ? "absolute scale-0 group-hover:scale-100 mt-2"
+            ? "absolute mt-2 scale-0 group-hover:scale-100"
             : "",
           context.mode === "vertical" && !menuOpen ? "hidden " : "",
-          context.mode === "vertical" && menuOpen ? "group:block" : "",
+          context.mode === "vertical" && menuOpen ? "group:block" : ""
         )}
       >
         {childrenComponent}
@@ -66,11 +66,11 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
           ? "underline-primary text-primary underline underline-offset-8"
           : "",
         context.mode === "vertical"
-          ? "underline-none hover:underline-none rounded-lg bg-transparent hover:bg-slate-100"
+          ? "underline-none hover:underline-none rounded-sm bg-transparent hover:bg-slate-100"
           : "",
         context.mode === "vertical" && context.index === index
           ? "bg-slate-100 text-primary"
-          : "",
+          : ""
       )}
       key={index}
     >
@@ -78,10 +78,9 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
         <div
           className={twMerge(
             "flex items-center gap-2",
-            context.mode === "vertical" ? "px-6 py-3" : "",
+            context.mode === "vertical" ? "px-6 py-3" : ""
           )}
           onClick={handleClick}
-          
         >
           {title}
           <Icon
@@ -90,7 +89,7 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
             className={twMerge(
               "transform transition-all duration-200 ease-in-out",
               context.mode === "vertical" && menuOpen ? "rotate-180" : "",
-              context.mode !== "vertical" ? "group-hover:rotate-180" : "",
+              context.mode !== "vertical" ? "group-hover:rotate-180" : ""
             )}
           ></Icon>
         </div>

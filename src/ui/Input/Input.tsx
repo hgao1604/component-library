@@ -4,7 +4,7 @@ import { ReactElement, InputHTMLAttributes } from "react";
 import Icon from "../Icon/Icon";
 type InputSize = "sm" | "lg";
 
-interface BaseInputProps
+export interface BaseInputProps
   extends Omit<InputHTMLAttributes<HTMLElement>, "size"> {
   className?: string;
   /** Disable the input */
@@ -26,7 +26,7 @@ export const Input: React.FC<BaseInputProps> = (props) => {
     <div
       className={twMerge(
         prepand || append
-          ? "group flex items-center overflow-hidden rounded-lg  border border-gray-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary"
+          ? "group flex items-center overflow-hidden  rounded-lg border border-gray-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary"
           : ""
       )}
     >
@@ -83,3 +83,5 @@ export const Input: React.FC<BaseInputProps> = (props) => {
     </div>
   );
 };
+
+export default Input;

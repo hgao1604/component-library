@@ -15,10 +15,13 @@ interface BaseButtonProps {
   href?: string;
 }
 
+// The following code is to make the Button component support HTML button and anchor elements, providing more flexibility.
 type NativeButtonProps = BaseButtonProps &
   React.ButtonHTMLAttributes<HTMLElement>;
 type AnchorButtonProps = BaseButtonProps &
   React.AnchorHTMLAttributes<HTMLElement>;
+
+// Some attributes are required on button but not on a, so we need Partial, vice versa.
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 /**
@@ -38,7 +41,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
       <a
         className={twMerge(
           className,
-          "underline-slate-700 relative inline-block font-mono uppercase text-slate-700 underline underline-offset-8 disabled:cursor-not-allowed disabled:opacity-70",
+          "underline-slate-700 relative inline-block cursor-pointer font-mono uppercase text-slate-700 underline underline-offset-8 disabled:cursor-not-allowed disabled:opacity-70",
           size === "sm" ? "px-4 py-2 text-xs" : "",
           size === "lg" ? "px-12 py-4 text-xl" : ""
         )}

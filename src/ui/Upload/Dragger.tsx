@@ -2,7 +2,7 @@ import React, { useState, DragEvent } from "react";
 import Icon from "../Icon/Icon";
 import { twMerge } from "tailwind-merge";
 
-interface DraggerProps {
+export interface DraggerProps {
   onFile: (files: FileList) => void;
   children?: React.ReactNode;
 }
@@ -44,3 +44,5 @@ export const Dragger: React.FC<DraggerProps> = (props) => {
     </div>
   );
 };
+
+export default Dragger;

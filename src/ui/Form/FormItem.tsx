@@ -1,10 +1,11 @@
 import React, { FC, useContext, useEffect } from "react";
 import { FormContext } from "./Form";
 import { RuleItem } from "async-validator";
+import { twMerge } from "tailwind-merge";
 
 export type SomeRequired<T, K extends keyof T> = Omit<T, K> &
   Required<Pick<T, K>>;
-interface FormItemProps {
+export interface FormItemProps {
   name: string;
   label?: string;
   children?: React.ReactNode;
@@ -53,7 +54,7 @@ const FormItem: FC<FormItemProps> = (props) => {
   const field = fields[name];
   const value = field?.value;
   const errors = field?.errors;
-  const isRequired = rules?.some((rule) => rule.required);
+  //const isRequired = rules?.some((rule) => rule.required);
   const hasError = errors?.length > 0;
   // 1. add a props manually with value and onChange
   const controlProps: Record<string, any> = {};
@@ -80,8 +81,17 @@ const FormItem: FC<FormItemProps> = (props) => {
   });
 
   return (
-    <div className="flex items-center justify-start gap-4">
-      {label && <label title={label}>{label}</label>}
+    <div
+      className={twMerge(
+        "flex min-h-[80px] items-center gap-2",
+        label ? "justify-between" : "justify-center"
+      )}
+    >
+      {label && (
+        <label title={label} className=" mt-7 inline-block self-start">
+          {label}
+        </label>
+      )}
       <div>
         <div>{newChild}</div>
         {hasError && (

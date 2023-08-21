@@ -24,12 +24,9 @@ const Form: FC<FormProps> = (props) => {
     validateFields,
   };
   return (
-    <form name={name} className="flex flex-col items-center  gap-10">
+    <form name={name} className="flex flex-col">
       <FormContext.Provider value={passedContext}>
         {children}
-        <div>
-          <pre>{JSON.stringify(fields, null, 2)}</pre>
-        </div>
       </FormContext.Provider>
     </form>
   );

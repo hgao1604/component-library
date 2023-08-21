@@ -17,28 +17,61 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {
-  args: {
-    name: "basic",
-  },
-  argTypes: {
-    name: {
-      control: {
-        type: "text",
-      },
-    },
-  },
+export const Default: Story = {
   render: (args) => (
-    <Form {...args} initialValues={{ username: "hg", remember: true }}>
-      <FormItem
-        label="Username"
-        name="username"
-        rules={[{ type: "email", required: true }]}
-      >
-        <Input />
+    <Form {...args}>
+      <FormItem label="Username" name="username">
+        <Input size="sm" />
       </FormItem>
       <FormItem label="Password" name="password">
-        <Input />
+        <Input size="sm" />
+      </FormItem>
+
+      <FormItem name="submit">
+        <Button type="submit">Submit</Button>
+      </FormItem>
+    </Form>
+  ),
+};
+
+export const WithDefaultValue: Story = {
+  render: (args) => (
+    <Form {...args} initialValues={{ username: "hg", remember: true }}>
+      <FormItem label="Username" name="username">
+        <Input size="sm" />
+      </FormItem>
+      <FormItem label="Password" name="password">
+        <Input size="sm" />
+      </FormItem>
+      <div className="flex items-center gap-2">
+        <FormItem
+          name="remember"
+          valuePropName="checked"
+          getValueFromEvent={(e) => e.target.checked}
+        >
+          <Input type="checkbox" />
+        </FormItem>
+        <span>Remember me</span>
+      </div>
+      <FormItem name="submit">
+        <Button type="submit">Submit</Button>
+      </FormItem>
+    </Form>
+  ),
+};
+
+export const Validation: Story = {
+  render: (args) => (
+    <Form {...args}>
+      <FormItem
+        label="Email"
+        name="email "
+        rules={[{ type: "email", required: true }]}
+      >
+        <Input size="sm" />
+      </FormItem>
+      <FormItem label="Password" name="password">
+        <Input size="sm" />
       </FormItem>
       <div className="flex items-center gap-2">
         <FormItem

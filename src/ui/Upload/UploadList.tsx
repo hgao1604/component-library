@@ -2,7 +2,7 @@ import Icon from "../Icon/Icon";
 import { UploadFile } from "./Upload";
 import Progress from "./Progress";
 
-interface UploadListProps {
+export interface UploadListProps {
   fileList: UploadFile[];
   onRemove: (_file: UploadFile) => void;
 }
@@ -11,7 +11,7 @@ export const UploadList: React.FC<UploadListProps> = (props) => {
   const { fileList, onRemove } = props;
 
   return (
-    <ul className="mt-2 flex flex-col gap-2 rounded-lg hover:bg-slate-100">
+    <ul className="flex flex-col gap-2 rounded-lg hover:bg-slate-100">
       {fileList.map((item) => {
         return (
           <>
@@ -47,3 +47,5 @@ export const UploadList: React.FC<UploadListProps> = (props) => {
     </ul>
   );
 };
+
+export default UploadList;
